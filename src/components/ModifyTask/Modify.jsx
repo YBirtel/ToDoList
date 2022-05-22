@@ -6,24 +6,20 @@ const Modify = ({ tasks, setTasks }) => {
 
     const { index } = useParams()
 
-    function modifyTask(name, duration) {
+    function modifyTask(name) {
         if (name !== "") {
             tasks[index].name = name;
         }
-        if (duration !== "") {
-            tasks[index].duration = duration;
-        }
-        return tasks
+        setTasks(tasks)
     }
 
     return (
         <>
-            <label for="task-name">Nom de la tâche</label>
-            <input type="text" id='task-name' placeholder={tasks[index].name} required/>
-            <label for="task-duration">Durée de la tâche (en min)</label>
-            <input type="number" id='task-duration' placeholder={tasks[index].duration} required/>
+            <h3>Modification de la tâche</h3>
+            <label htmlFor="task-name">Nom de la tâche</label>
+            <input type="text" id='task-name' data-testid="task-name" required/>
             <Link to="/">
-                <button className='button modify' onClick={() => modifyTask(document.getElementById('task-name').value, document.getElementById('task-duration').value)}>Modifier</button>
+                <button className='button modify' data-testid="modify" onClick={() => modifyTask(document.getElementById('task-name').value)}>Modifier</button>
             </Link>
             <div className='back-div'>
                 <Link to="/" style={{ textDecoration: 'none' }}>

@@ -5,7 +5,8 @@ import Task from '../DisplayTask/Task';
 const TaskList = ({ tasks, setTasks }) => {
 
     function RemoveTask(taskName) {
-        return tasks.filter((e) => e.name !== taskName)
+        tasks = tasks.filter((e) => e.name !== taskName)
+        setTasks(tasks)
     }
 
     return (
@@ -13,11 +14,11 @@ const TaskList = ({ tasks, setTasks }) => {
             <ul className='list'>
                 {tasks.length > 0 ? tasks.map((element, key) => (
                     <li key={key}>
-                        <Task nom={element.name} duree={element.duration} />
-                        <Link to={`/modify/${tasks.indexOf(element)}`} style={{ textDecoration: 'none' }}>
-                            <button className='button modify'>Modifier</button>
+                        <Task nom={element.name}/>
+                        <Link data-testid="modify-link" to={`/modify/${tasks.indexOf(element)}`} style={{ textDecoration: 'none' }}>
+                            <button className='button modify' data-testid="button-modify">Modifier</button>
                         </Link>
-                        <button className='button delete' onClick={() => setTasks(RemoveTask(element.name))}>Supprimer</button>
+                        <button className='button delete' data-testid="button-delete" onClick={() => RemoveTask(element.name)}>Supprimer</button>
                     </li>
                 )) :
 

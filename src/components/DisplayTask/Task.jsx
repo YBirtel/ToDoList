@@ -1,6 +1,6 @@
-const Task = ( {nom, duree} ) => {
+const Task = ( {nom} ) => {
     return (
-        <p>{nom} {duree} min</p>    
+        <div className="tasks" data-testid="task">{nom}</div>    
     );
 }
  
