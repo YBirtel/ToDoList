@@ -10,8 +10,9 @@ const Create = ({tasks, setTasks }) => {
         if (!name) {
             alert("Veuillez remplir le champ nom")
             e.preventDefault()
+        }else{
+            return setTasks([...tasks, { name: name }])
         }
-        return setTasks([...tasks, { name: name }])
     }
 
     return (
